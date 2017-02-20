@@ -54,6 +54,29 @@ features_list = [poi, feature_1, feature_2, feature_3]
 data = featureFormat(data_dict, features_list )
 poi, finance_features = targetFeatureSplit( data )
 
+# Surely there is a more pythonic way to do this, but I haven't coded anything in python in years.
+# maxint is deprecated with python 3
+max_data = - sys.maxsize
+min_data = sys.maxsize
+
+print 'initial min', min_data
+print 'initial max', max_data
+# loop over data in data_dict
+for name in data_dict:
+    # grab the current dictionary, we need it 4 times
+    current_data = data_dict[name]['salary']
+
+    if current_data == 'NaN':
+        pass
+    else:
+        if max_data < current_data:
+            max_data = current_data
+        if current_data < min_data:
+            min_data = current_data
+
+print 'final max', max_data
+print 'final min', min_data
+
 
 ### in the "clustering with 3 features" part of the mini-project,
 ### you'll want to change this line to 
